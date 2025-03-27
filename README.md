@@ -1,13 +1,11 @@
-This Telegram Bot, based on [python-aria-mirror-bot](https://github.com/lzzy12/python-aria-mirror-bot), has undergone
-substantial modifications and is designed for efficiently mirroring or leeching files from the Internet to various
-destinations, including Google Drive, Telegram, or any rclone-supported cloud. It is built using asynchronous
-programming in Python.
+# Cooked Bot
 
-- **TELEGRAM CHANNEL:** https://t.me/mltb_official_channel
-- **TELEGRAM GROUP:** https://t.me/mltb_official_support
+Cooked Bot is a powerful and highly customizable Telegram bot based on [mirror-leech-telegram-bot](https://github.com/anasty17/mirror-leech-telegram-bot). It is designed to efficiently mirror and leech files from the internet to various destinations, including Google Drive, Telegram, and any rclone-supported cloud storage. Built with asynchronous Python, it offers seamless performance and advanced features for handling large-scale uploads and downloads.
+
+# Features
 
 <details>
-  <summary><h1>Features</h1></summary>
+  <summary><h3>Here</h3></summary>
 
 <details>
   <summary><h5>QBittorrent</h5></summary>
@@ -212,8 +210,10 @@ programming in Python.
 </details>
 </details>
 
+# Getting Started
+
 <details>
-  <summary><h1>How to deploy?</h1></summary>
+  <summary><h3>How to deploy?</h3></summary>
 
 <details>
   <summary><h2>Prerequisites</h2></summary>
@@ -224,7 +224,7 @@ programming in Python.
 - Clone this repo:
 
 ```
-git clone https://github.com/anasty17/mirror-leech-telegram-bot mirrorbot/ && cd mirrorbot
+git clone https://github.com/ThePrateekBhatia/CookedBot mirrorbot/ && cd mirrorbot
 ```
 
 - For Debian based distros
@@ -272,13 +272,13 @@ Fill up rest of the fields. Meaning of each field is discussed below.
 **2. Optional Fields**
 - `TG_PROXY` (`Dict`): The Proxy settings as dict. Ex: {"scheme": "socks5", "hostname": "11.22.33.44", "port": 1234, "username": "user", "password": "pass"}. The username and password can be omitted if the proxy doesn’t require authorization. 
 - `USER_SESSION_STRING` (`Str`): To download/upload from your telegram account if user is `PREMIUM` and to send rss. To generate session string use this command `python3 generate_string_session.py` after mounting repo folder for sure. **NOTE**: You can't use bot with private message. Use it with superGroup.
-- `DATABASE_URL` (`Str`): Your Mongo Database URL (Connection string). Follow this [Create Database](https://github.com/anasty17/test?tab=readme-ov-file#create-database) to create database. Data will be saved in Database: bot settings, users settings, rss data and incomplete tasks. **NOTE**: You can always edit all settings that saved in database from the official site -> (Browse collections). 
+- `DATABASE_URL` (`Str`): Your Mongo Database URL (Connection string). Follow this [Create Database](https://github.com/ThePrateekBhatia/CookedBot?tab=readme-ov-file#create-database) to create database. Data will be saved in Database: bot settings, users settings, rss data and incomplete tasks. **NOTE**: You can always edit all settings that saved in database from the official site -> (Browse collections). 
 - `CMD_SUFFIX` (`Str`|`Int`): Commands index number. This number will added at the end all commands.
 - `AUTHORIZED_CHATS` (`Str`): Fill user_id and chat_id of groups/users you want to authorize. To auth only specific topic(s) write it in this format `chat_id|thread_id` Ex:-100XXXXXXXXXXX or -100XXXXXXXXXXX|10 or -100XXXXXXXXXXX|10|12. Separate them by space.
 - `SUDO_USERS` (`Str`):  Fill user_id of users whom you want to give sudo permission. Separate them by space.
 - `UPLOAD_PATHS` (`Dict`): Send Dict of keys that have path values. Example: {"path 1": "remote:rclonefolder", "path 2": "gdrive1 id", "path 3": "tg chat id", "path 4": "mrcc:remote:", "path 5": "b: @username"}. 
 - `DEFAULT_UPLOAD` (`Str`): Whether `rc` to upload to `RCLONE_PATH` or `gd` to upload to `GDRIVE_ID`. Default is `rc`. Read
-  More [HERE](https://github.com/anasty17/mirror-leech-telegram-bot/tree/master#upload).
+  More [HERE](https://github.com/ThePrateekBhatia/CookedBot?tab=readme-ov-file#upload).
 - `STATUS_UPDATE_INTERVAL` (`Int`): Time in seconds after which the progress/status message will be updated. Recommended `10`
   seconds at least.
 - `STATUS_LIMIT` (`Int`): Limit the no. of tasks shown in status message with buttons. Default is `4`. **NOTE**: Recommended
@@ -292,10 +292,10 @@ Fill up rest of the fields. Meaning of each field is discussed below.
   from [Streamwish](https://streamwish.com/?op=my_account).
 - `YT_DLP_OPTIONS` (`Dict`): Dict of yt-dlp options. Check all possible
   options [HERE](https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184) or use
-  this [script](https://t.me/mltb_official_channel/177) to convert cli arguments to api options. Format: {key: value, key: value, key: value}.
+  this [script](https://t.me/CookedMirrors/435) to convert cli arguments to api options. Format: {key: value, key: value, key: value}.
     - Example: {"format": "bv*+mergeall[vcodec=none]", "nocheckcertificate": True, "playliststart": 10, "fragment_retries": float("inf"), "matchtitle": "S13", "writesubtitles": True, "live_from_start": True, "postprocessor_args": {"ffmpeg": ["-threads", "4"]}, "wait_for_video": (5, 100), "download_ranges": [{"start_time": 0, "end_time": 10}]}
 - `USE_SERVICE_ACCOUNTS` (`Bool`): Whether to use Service Accounts or not, with google-api-python-client. For this to work
-  see [Using Service Accounts](https://github.com/anasty17/mirror-leech-telegram-bot#generate-service-accounts-what-is-service-account)
+  see [Using Service Accounts](https://github.com/ThePrateekBhatia/CookedBot?tab=readme-ov-file#using-service-accounts-for-uploading-to-avoid-user-rate-limit)
   section below. Default is `False`.
 - `FFMPEG_CMDS` (`Dict`): Dict of list values of ffmpeg commands. You can set multiple ffmpeg commands for all files before upload. Don't write ffmpeg at beginning, start directly with the arguments. `Dict`
   - Examples: {"subtitle": ["-i mltb.mkv -c copy -c:s srt mltb.mkv", "-i mltb.video -c copy -c:s srt mltb"], "convert": ["-i mltb.m4a -c:a libmp3lame -q:a 2 mltb.mp3", "-i mltb.audio -c:a libmp3lame -q:a 2 mltb.mp3"], extract: ["-i mltb -map 0:a -c copy mltb.mka -map 0:s -c copy mltb.srt"]}
@@ -325,7 +325,7 @@ Fill up rest of the fields. Meaning of each field is discussed below.
 
 - `GDRIVE_ID` (`Str`): This is the Folder/TeamDrive ID of the Google Drive OR `root` to which you want to upload all the mirrors using google-api-python-client.
 - `IS_TEAM_DRIVE` (`Bool`): Set `True` if uploading to TeamDrive using google-api-python-client. Default is `False`.
-- `INDEX_URL` (`Str`): Refer to <https://gitlab.com/ParveenBhadooOfficial/Google-Drive-Index>.
+- `INDEX_URL` (`Str`): Refer to <https://gitlab.com/GoogleDriveIndex/Google-Drive-Index>.
 - `STOP_DUPLICATE` (`Bool`): Bot will check file/folder name in Drive incase uploading to `GDRIVE_ID`. If it's present in Drive then downloading or cloning will be stopped. (**NOTE**: Item will be checked using name and not hash, so this feature is not perfect). Default is `False`.
 
 **4. Rclone**
@@ -340,7 +340,7 @@ Fill up rest of the fields. Meaning of each field is discussed below.
 **5. Update**
 
 - `UPSTREAM_REPO` (`Str`): Your github repository link, if your repo is private add `https://username:{githubtoken}@github.com/{username}/{reponame}` format. Get token from [Github settings](https://github.com/settings/tokens). So you can update your bot from filled repository on each restart.
-    - **NOTE**: Any change in docker or requirements you need to deploy/build again with updated repo to take effect. DON'T delete .gitignore file. For more information read [THIS](https://github.com/anasty17/mirror-leech-telegram-bot/tree/master#upstream-repo-recommended).
+    - **NOTE**: Any change in docker or requirements you need to deploy/build again with updated repo to take effect. DON'T delete .gitignore file. For more information read [THIS](https://github.com/ThePrateekBhatia/CookedBot?tab=readme-ov-file#upstream-repo-recommended).
 - `UPSTREAM_BRANCH` (`Str`): Upstream branch for update. Default is `master`.
 
 **6. Leech**
@@ -424,13 +424,13 @@ Make sure you still mount the repo folder and installed the docker from official
 - Build Docker image:
 
 ```
-sudo docker build . -t mltb
+sudo docker build . -t chef
 ```
 
 - Run the image:
 
 ```
-sudo docker run --network host mltb
+sudo docker run --network host chef
 ```
 
 - To stop the running image:
@@ -450,40 +450,40 @@ sudo docker stop id
 <details>
   <summary><h3>Using Docker Compose Plugin</h3></summary>
 
-- Install docker compose plugin
+- Install docker compose
 
 ```
-sudo apt install docker-compose-plugin
+sudo apt install docker-compose
 ```
 
 - Build and run Docker image:
 
 ```
-sudo docker compose up
+sudo docker-compose up
 ```
 
 - After editing files with nano, for example (nano start.sh) or git pull you must use --build to edit container files:
 
 ```
-sudo docker compose up --build
+sudo docker compose-up --build
 ```
 
 - To stop the running container:
 
 ```
-sudo docker compose stop
+sudo docker-compose stop
 ```
 
 - To run the container:
 
 ```
-sudo docker compose start
+sudo docker-compose start
 ```
 
 - To get log from already running container (after mounting the folder):
 
 ```
-sudo docker compose logs --follow
+sudo docker-compose logs --follow
 ```
 
 ------
@@ -535,7 +535,7 @@ sudo ip6tables-save | sudo tee /etc/iptables/rules.v6
 </details>
 
 <details>
-  <summary><h1>Extras</h1></summary>
+  <summary><h3>Extras</h3></summary>
 
 <details>
   <summary><h5>Bot commands to be set in <a href="https://t.me/BotFather">@BotFather</a></h5></summary>
@@ -887,58 +887,10 @@ Authentication using [cookies.txt](https://github.com/yt-dlp/yt-dlp/wiki/Extract
 </details>
 </details>
 
+## Credits
 
-# All Thanks To Our Contributors
+Built on top of [mirror-leech-telegram-bot](https://github.com/anasty17/mirror-leech-telegram-bot) by anasty17.
 
-<a href="https://github.com/anasty17/mirror-leech-telegram-bot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=anasty17/mirror-leech-telegram-bot" />
-</a>
-
-# Donations
-
-<p> If you feel like showing your appreciation for this project, then how about buying me a coffee.</p>
-
-[!["Buy Me A Coffee"](https://storage.ko-fi.com/cdn/kofi2.png)](https://ko-fi.com/anasty17)
-
-Binance ID:
-
-```
-52187862
-```
-
-USDT Address:
-
-```
-TEzjjfkxLKQqndpsdpkA7jgiX7QQCL5p4f
-```
-
-Network:
-
-```
-TRC20
-```
-TRX Address:
-
-```
-TEzjjfkxLKQqndpsdpkA7jgiX7QQCL5p4f
-```
-
-Network:
-
-```
-TRC20
-```
-
-BTC Address:
-
-```
-17dkvxjqdc3yiaTs6dpjUB1TjV3tD7ScWe
-```
-
-ETH Address:
-
-```
-0xf798a8a1c72d593e16d8f3bb619ebd1a093c7309
-```
-
------
+Inspired by and incorporating features from:
+- [WZML-X](https://github.com/SilentDemonSD/WZML-X) by SilentDemonSD
+- [Z-Mirror](https://github.com/Dawn-India/Z-Mirror) by Dawn-India
