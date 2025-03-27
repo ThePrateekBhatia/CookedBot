@@ -524,7 +524,7 @@ def pixeldrain(url):
         return f"https://pd.cybar.xyz/{file_id}"
 
     # Fallback for unknown types
-    raise DirectDownloadLinkException("ERROR: Invalid Pixeldrain URL type.")
+    raise DirectDownloadLinkException(f"ERROR: Invalid Pixeldrain URL type: {link_type}")
 
 
 def streamtape(url):
